@@ -31,8 +31,8 @@ jobs:
         env:
           parsed_data: ${{ steps.parse.outputs.payload }}
         run: |
-          echo "$parsed_data"
-          echo "Parsed data JSON:"
-          echo "$parsed_data['Job Name']"
+          echo "$parsed_data" | jq .
+          echo "$parsed_data" | jq .JobName
+
 
       
