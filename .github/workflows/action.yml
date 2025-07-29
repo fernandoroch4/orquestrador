@@ -33,6 +33,6 @@ jobs:
         run: |
           echo "$parsed_data"
           echo "Parsed data JSON:"
-          echo "Job Name: $parsed_data" | jq .["Job Name"]
+          echo "$parsed_data" | jq .["Job Name"]
 
       
