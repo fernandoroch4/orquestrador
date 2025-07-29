@@ -10,7 +10,7 @@ body:
   - type: input
     id: job-name
     attributes:
-      label: ### >>Job Name<<
+      label: >>Job Name<<
       description: What is the name of the data processing job?
       placeholder: ex. Data Processing Job 1
     validations:
@@ -18,7 +18,7 @@ body:
   - type: textarea
     id: sql-query
     attributes:
-      label: ### >>SQL Query<<
+      label: >>SQL Query<<
       description: Please provide the SQL query for the data processing job.
       placeholder: ex. SELECT * FROM table WHERE condition
       render: sql
