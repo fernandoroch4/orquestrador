@@ -1,0 +1,27 @@
+name: New data processing
+description: Request for new data processing.
+title: "[NEW]: "
+labels: ["new", "data-processing"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Requesting a new data processing job!
+  - type: input
+    id: job-name
+    attributes:
+      label: Job Name
+      description: What is the name of the data processing job?
+      placeholder: ex. Data Processing Job 1
+    validations:
+      required: true
+  - type: textarea
+    id: sql-query
+    attributes:
+      label: SQL Query
+      description: Please provide the SQL query for the data processing job.
+      placeholder: ex. SELECT * FROM table WHERE condition
+      render: sql
+    validations:
+      required: true
+    
