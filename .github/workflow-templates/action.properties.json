@@ -1,0 +1,14 @@
+{
+    "name": "Data Processing Request",
+    "description": "This action processes data requests and returns results.",
+    "iconName": "gear",
+    "categories": [
+        "continuous-integration",
+        "data-processing"
+    ],
+    "filePatterns": [
+        ".*\\.json$",
+        ".*\\.py$",
+        ".*\\.md$"
+    ]
+}
