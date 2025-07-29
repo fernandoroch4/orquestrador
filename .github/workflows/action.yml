@@ -38,7 +38,6 @@ jobs:
         run: |
           echo "$parsed_data"
           echo "Parsed data JSON:"
-          echo "$parsed_data" | jq .
-          echo "Job Name: ${{ steps.parse.outputs.job_name }}"
-          echo "SQL Query: ${{ steps.parse.outputs.sql_query }}"
+          echo "$parsed_data" | jq .['Job Name']
+
       
