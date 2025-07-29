@@ -36,4 +36,48 @@ jobs:
         env:
           parsed_data: ${{ steps.parse.outputs.payload }}
         run: |
-          echo "$parsed_data"
+          echo "$parsed_data | jq '.'"
+      - name: Show parsed data
+        run: |
+          echo "Parsed data: ${{ steps.parse.outputs.payload }}"
+          echo "Job Name: ${{ steps.parse.outputs.job-name }}"
+          echo "SQL Query: ${{ steps.parse.outputs.sql-query }}"
+      - name: Create a comment with parsed data
+        run: |
+          echo "Creating a comment with parsed data..."
+          echo "Job Name: ${{ steps.parse.outputs.job-name }}"
+          echo "SQL Query: ${{ steps.parse.outputs.sql-query }}"
+          echo "Comment created successfully!"
+          echo "::notice file=issue-comment.txt::Job Name: ${{ steps.parse.outputs.job-name }}\nSQL Query: ${{ steps.parse.outputs.sql-query }}"
+      - name: Create a comment on the issue
+        uses: peter-murray/issue-forms-comment@v4.0.0
+        with:
+          issue_id: ${{ github.event.issue.number }}
+          body: |
+            **Job Name:** ${{ steps.parse.outputs.job-name }}
+            **SQL Query:** ${{ steps.parse.outputs.sql-query }}
+            Thank you for your request! We will process it shortly.
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Close the issue
+        run: |
+          echo "Closing the issue..."
+          echo "Issue closed successfully!"
+          echo "::notice file=issue-close.txt::Closing the issue..."
+      - name: Close the issue
+        uses: peter-murray/issue-forms-close@v4.0.0
+        with:
+          issue_id: ${{ github.event.issue.number }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Notify the user
+        run: |
+          echo "Thank you for your request! We will process it shortly."
+      - name: Notify the user
+        uses: peter-murray/issue-forms-notify@v4.0.0
+        with:
+          issue_id: ${{ github.event.issue.number }}
+          body: |
+            Thank you for your request! We will process it shortly.
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
